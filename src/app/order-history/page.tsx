@@ -1,0 +1,1 @@
+  <p className="text-center text-[var(--gray-dark)]">You don&apos;t have any order history yet.</p>

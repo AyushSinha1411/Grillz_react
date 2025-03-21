@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -56,7 +55,7 @@ export default function SpecialOffers() {
           <div className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] rounded-lg p-6 md:p-8 mb-12 text-white">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-2">Today's Special: {dayOfWeek} Discount!</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-2">Today&apos;s Special: {dayOfWeek} Discount!</h2>
                 <p className="text-lg mb-4">Get 10% OFF on all {formatCategoryName(dailyCategory)} items today!</p>
                 <a href="#daily-deals" className="inline-block bg-white text-[var(--primary)] px-6 py-3 rounded-full font-medium hover:bg-[var(--secondary)] hover:text-[var(--text-dark)] transition-colors">
                   View Deals
@@ -75,7 +74,7 @@ export default function SpecialOffers() {
           {/* Daily Deals Section */}
           <section id="daily-deals" className="mb-16">
             <h2 className="text-2xl font-bold mb-6 font-heading">
-              {dayOfWeek}'s {formatCategoryName(dailyCategory)} Deals (10% OFF)
+              {dayOfWeek}&apos;s {formatCategoryName(dailyCategory)} Deals (10% OFF)
             </h2>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

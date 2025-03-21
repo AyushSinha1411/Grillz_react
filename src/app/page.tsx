@@ -1,0 +1,1 @@
+  <p className="text-center text-[var(--gray-dark)]">Couldn&apos;t load today&apos;s specials.</p>

@@ -88,7 +88,7 @@ export default function OrderHistory() {
               />
             </svg>
             <h2 className="text-xl font-bold mt-4 mb-2">No Order History</h2>
-            <p className="text-[var(--gray-dark)] mb-6">You haven't placed any orders yet.</p>
+            <p className="text-[var(--gray-dark)] mb-6">You haven&apos;t placed any orders yet.</p>
             <Link 
               href="/" 
               className="inline-block bg-[var(--primary)] text-white px-6 py-3 rounded-md font-medium hover:bg-[var(--primary-dark)] transition-colors"

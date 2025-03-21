@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -115,7 +115,7 @@ export default function Cart() {
                 />
               </svg>
               <h2 className="text-2xl font-bold mt-6 mb-2">Your cart is empty</h2>
-              <p className="text-[var(--gray-dark)] mb-8">Looks like you haven't added any items to your cart yet.</p>
+              <p className="text-center text-[var(--gray-dark)]">You haven&apos;t added any items to your cart yet.</p>
               <Link 
                 href="/" 
                 className="inline-block bg-[var(--primary)] text-white px-6 py-3 rounded-md font-medium hover:bg-[var(--primary-dark)] transition-colors"
