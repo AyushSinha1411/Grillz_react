@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { useOrderHistory } from "@/context/OrderHistoryContext";
 
 export default function OrderHistory() {
-  const { orders, clearHistory } = useOrderHistory();
+  const { orders, clearOrderHistory } = useOrderHistory();
   const [selectedOrder, setSelectedOrder] = useState<string | null>(null);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   
@@ -48,7 +48,7 @@ export default function OrderHistory() {
   
   // Confirm clearing history
   const handleClearHistory = () => {
-    clearHistory();
+    clearOrderHistory();
     setShowClearConfirm(false);
   };
   

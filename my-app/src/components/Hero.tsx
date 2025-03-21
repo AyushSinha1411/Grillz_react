@@ -1,13 +1,14 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
 
 export const Hero = () => {
   return (
     <section className="relative bg-[var(--primary)] text-white pt-12 pb-20 overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[var(--primary-light)] opacity-30"></div>
-      <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-[var(--primary-light)] opacity-20"></div>
-      <div className="absolute top-1/2 right-1/4 w-16 h-16 rounded-full bg-[var(--secondary)] opacity-20"></div>
+      <div className="absolute -top-12 -right-12 w-48 h-48 bg-[var(--primary-light)] opacity-20 rounded-full"></div>
+      <div className="absolute top-1/3 left-20 w-24 h-24 bg-[var(--primary-light)] opacity-20 rounded-full"></div>
+      <div className="absolute -bottom-12 right-1/3 w-36 h-36 bg-[var(--primary-light)] opacity-20 rounded-full"></div>
       
       <div className="container-custom relative">
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-6">

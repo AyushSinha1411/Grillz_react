@@ -1,9 +1,8 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { FoodItem } from "@/data/foodItems";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-// Define order type
+// Define types for order items and orders
 export interface OrderItem {
   itemId: number;
   quantity: number;
@@ -17,67 +16,74 @@ export interface Order {
   items: OrderItem[];
   total: number;
   date: string;
-  status: 'processing' | 'delivered' | 'cancelled';
-  paymentMethod: string;
+  status: "delivered" | "processing" | "cancelled";
+  paymentMethod: "credit" | "cash" | "other";
 }
 
-// Define the context type
+// Define context type
 interface OrderHistoryContextType {
   orders: Order[];
-  addOrder: (order: Omit<Order, "id" | "date">) => void;
-  clearHistory: () => void;
+  addOrder: (order: Omit<Order, "id" | "date" | "status">) => void;
+  clearOrderHistory: () => void;
 }
 
-// Create context with default values
-const OrderHistoryContext = createContext<OrderHistoryContextType>({
-  orders: [],
-  addOrder: () => {},
-  clearHistory: () => {},
-});
+// Create context
+const OrderHistoryContext = createContext<OrderHistoryContextType | null>(null);
 
-// Create a provider component
-export const OrderHistoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+// Provider component
+export const OrderHistoryProvider = ({ children }: { children: ReactNode }) => {
   const [orders, setOrders] = useState<Order[]>([]);
-
+  
   // Load orders from localStorage on mount
   useEffect(() => {
-    const savedOrders = localStorage.getItem("orderHistory");
-    if (savedOrders) {
-      try {
+    try {
+      const savedOrders = localStorage.getItem("orderHistory");
+      if (savedOrders) {
         setOrders(JSON.parse(savedOrders));
-      } catch (e) {
-        console.error("Failed to parse order history from localStorage", e);
       }
+    } catch (error) {
+      console.error("Failed to load order history from localStorage:", error);
     }
   }, []);
-
-  // Save orders to localStorage whenever they change
+  
+  // Save orders to localStorage when they change
   useEffect(() => {
-    localStorage.setItem("orderHistory", JSON.stringify(orders));
+    try {
+      localStorage.setItem("orderHistory", JSON.stringify(orders));
+    } catch (error) {
+      console.error("Failed to save order history to localStorage:", error);
+    }
   }, [orders]);
-
-  // Add a new order to the history
-  const addOrder = (order: Omit<Order, "id" | "date">) => {
+  
+  // Add a new order
+  const addOrder = (order: Omit<Order, "id" | "date" | "status">) => {
     const newOrder: Order = {
       ...order,
-      id: Math.random().toString(36).substring(2, 9), // Simple random ID
-      date: new Date().toISOString()
+      id: Math.random().toString(36).substring(2, 9),
+      date: new Date().toISOString(),
+      status: "processing",
     };
     
     setOrders(prevOrders => [newOrder, ...prevOrders]);
   };
-
-  // Clear order history
-  const clearHistory = () => {
+  
+  // Clear all order history
+  const clearOrderHistory = () => {
     setOrders([]);
   };
-
+  
   return (
-    <OrderHistoryContext.Provider value={{ orders, addOrder, clearHistory }}>
+    <OrderHistoryContext.Provider value={{ orders, addOrder, clearOrderHistory }}>
       {children}
     </OrderHistoryContext.Provider>
   );
 };
 
-// Custom hook to use the order history context
-export const useOrderHistory = () => useContext(OrderHistoryContext); 
+// Custom hook for using this context
+export const useOrderHistory = () => {
+  const context = useContext(OrderHistoryContext);
+  if (!context) {
+    throw new Error("useOrderHistory must be used within an OrderHistoryProvider");
+  }
+  return context;
+}; 

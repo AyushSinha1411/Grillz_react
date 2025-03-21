@@ -12,10 +12,8 @@ interface FoodItemsProps {
   sortOption?: string;
 }
 
-type SortOption = "popularity" | "price-low" | "price-high" | "rating";
-
 export const FoodItems = ({ activeCategory = "", searchQuery = "", sortOption = "popularity" }: FoodItemsProps) => {
-  const { cartItems, cartPrices, addToCart, removeFromCart, getTotalItems, getTotalPrice } = useCart();
+  const { cartItems, cartPrices, addToCart, removeFromCart, getTotalPrice } = useCart();
   const [filteredItems, setFilteredItems] = useState<typeof foodItemsData>([]);
   const [isFiltering, setIsFiltering] = useState(false);
   const [dailySpecialCategory, setDailySpecialCategory] = useState("");
@@ -73,7 +71,7 @@ export const FoodItems = ({ activeCategory = "", searchQuery = "", sortOption = 
     };
     
     // Apply the initial filtering
-    let filtered = filterItems();
+    const filtered = filterItems();
     
     // Apply sorting
     switch (sortOption) {
@@ -245,7 +243,7 @@ export const FoodItems = ({ activeCategory = "", searchQuery = "", sortOption = 
           })
         ) : (
           <div className="col-span-full text-center py-8">
-            <p className="text-lg text-[var(--gray-dark)]">No items found for "{searchQuery}" in this category.</p>
+            <p className="text-lg text-[var(--gray-dark)]">No items found for &quot;{searchQuery}&quot; in this category.</p>
             <Link 
               href="/menu" 
               className="mt-4 inline-block px-4 py-2 bg-[var(--primary)] text-white rounded-md"
