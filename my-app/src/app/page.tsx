@@ -92,7 +92,7 @@ export default function Home() {
         {dailySpecialItems.length > 0 && (
           <section className="container-custom py-12 bg-gradient-to-r from-[var(--primary-light)] to-[var(--primary)] text-white">
             <div className="mb-8">
-              <h2 className="text-3xl font-bold mb-2 font-heading">Today's Special: {dayOfWeek} Discount!</h2>
+              <h2 className="text-3xl font-bold mb-2 font-heading">Today&apos;s Special: {dayOfWeek} Discount!</h2>
               <p className="text-xl">Get 10% OFF on all {formatCategoryName(dailySpecialCategory)} items today!</p>
             </div>
             
