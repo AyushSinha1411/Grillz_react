@@ -78,10 +78,7 @@ export default function Cart() {
     addOrder({
       items: orderItems,
       total,
-      status: 'processing',
-      paymentMethod: paymentMethod === 'credit' 
-        ? `Credit Card (${formData.cardNumber.slice(-4)})` 
-        : 'PayPal'
+      paymentMethod: paymentMethod === 'credit' ? 'credit' : 'other'
     });
     
     // Here we would normally integrate with a payment processor like Stripe

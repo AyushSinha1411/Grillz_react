@@ -165,7 +165,7 @@ export default function Home() {
         
         <section className="container-custom py-12">
           <h2 className="text-3xl font-bold mb-6 font-heading">Categories</h2>
-          <CategorySelector onCategoryChange={handleCategoryChange} />
+          <CategorySelector activeCategory={activeCategory} onCategoryChange={handleCategoryChange} />
         </section>
         
         <section className="container-custom py-12 bg-[var(--gray-light)]">
